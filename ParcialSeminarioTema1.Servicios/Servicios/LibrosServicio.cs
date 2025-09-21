@@ -28,9 +28,14 @@ namespace ParcialSeminarioTema1.Servicios.Servicios
             {
                 _librosRepositorio.Agregar(libro);
             }
-            //var nuevoLibro = _librosRepositorio.ObtenerPorId(libro.LibroId);
-            //return LibrosMapeador.MapearListDto(nuevoLibro!);
-            return LibrosMapeador.MapearListDto(libro);
+            /*
+             * Una vez guardardo el libro
+             * lo accedo por su Id para poder obtener todos 
+             * sus datos y luego poder mapear al DTo
+             */
+            var nuevoLibro = _librosRepositorio.ObtenerPorId(libro.LibroId);
+            return LibrosMapeador.MapearListDto(nuevoLibro!);
+            
         }
 
         public int ObtenerCantidad(int? generoId = null)
