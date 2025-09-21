@@ -13,6 +13,23 @@ namespace ParcialSeminarioTema1.Datos.Repositorios
             _dbContext = dbContext;
         }
 
+        public void Eliminar(int generoId)
+        {
+            var generoInDb = _dbContext.Generos
+                .FirstOrDefault(g => g.GeneroId == generoId);
+            if (generoInDb == null)
+            {
+                throw new Exception("Género no encontrado!!!");
+            }
+            _dbContext.Generos.Remove(generoInDb);
+            _dbContext.SaveChanges();
+        }
+
+        public bool EstaRelacionado(int generoId)
+        {
+            return _dbContext.Libros.Any(l=>l.GeneroId==generoId);
+        }
+
         public Genero? ObtenerGeneroPorNombre(string nombre)
         {
             return _dbContext.Generos

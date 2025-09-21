@@ -6,5 +6,7 @@ namespace ParcialSeminarioTema1.Datos.Interfaces
     {
         List<Genero> ObtenerLista();
         Genero? ObtenerGeneroPorNombre(string nombre);
+        bool EstaRelacionado(int generoId);
+        void Eliminar(int generoId);
     }
 }

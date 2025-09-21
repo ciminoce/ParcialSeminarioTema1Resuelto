@@ -1,4 +1,5 @@
-﻿using ParcialSeminarioTema1.Servicios.DTOs.Libro;
+﻿using ParcialSeminarioTema1.Servicios.DTOs.Genero;
+using ParcialSeminarioTema1.Servicios.DTOs.Libro;
 
 namespace ParcialSeminarioTema1.UI.Helpers
 {
@@ -56,6 +57,10 @@ namespace ParcialSeminarioTema1.UI.Helpers
                     r.Cells[0].Value = libroDto.LibroId;
                     r.Cells[1].Value = libroDto.Titulo;
                     r.Cells[2].Value = libroDto.Genero;
+                    break;
+                case GeneroListDto generoDto:
+                    r.Cells[0].Value = generoDto.GeneroId;
+                    r.Cells[1].Value = generoDto.NombreGenero;
                     break;
             }
 

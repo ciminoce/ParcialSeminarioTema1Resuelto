@@ -14,6 +14,34 @@ namespace ParcialSeminarioTema1.Servicios.Servicios
             _generosRepositorio = generosRepositorio;
         }
 
+        public (bool Exito, string Mensaje) Eliminar(string nombre)
+        {
+            var genero=_generosRepositorio.ObtenerGeneroPorNombre(nombre);
+            if(genero is null)
+            {
+                return (false, "Género no encontrado");
+            }
+            try
+            {
+                if (!_generosRepositorio.EstaRelacionado(genero.GeneroId))
+                {
+                    _generosRepositorio.Eliminar(genero.GeneroId);
+                    return (true, "Género eliminado satisfactoriamente!!!");
+
+                }
+                else
+                {
+                    return (false, "Género relacionado\n" + "Baja denegada!!!");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return (false, "Joder algo salió mal\n" + ex.Message);
+            }
+        }
+
         public GeneroListDto? ObtenerGeneroPorNombre(string nombre)
         {
             var genero = _generosRepositorio.ObtenerGeneroPorNombre(nombre);

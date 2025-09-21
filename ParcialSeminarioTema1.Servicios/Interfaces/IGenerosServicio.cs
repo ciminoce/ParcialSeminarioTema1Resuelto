@@ -6,5 +6,6 @@ namespace ParcialSeminarioTema1.Servicios.Interfaces
     {
         List<GeneroListDto> ObtenerLista();
         GeneroListDto? ObtenerGeneroPorNombre(string nombre);
+        (bool Exito, string Mensaje) Eliminar(string nombre);
     }
 }

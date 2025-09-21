@@ -121,13 +121,13 @@ namespace ParcialSeminarioTema1.UI
 
         private void TsbBorrar_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.SelectedRows.Count==0)
+            if (dgvDatos.SelectedRows.Count == 0)
             {
                 return;
             }
-            var r=dgvDatos.SelectedRows[0];
+            var r = dgvDatos.SelectedRows[0];
             LibroListDto libroDto = (LibroListDto)r.Tag!;
-            DialogResult dr=MessageBox.Show($"¿Confirma la baja de {libroDto.Titulo}?",
+            DialogResult dr = MessageBox.Show($"¿Confirma la baja de {libroDto.Titulo}?",
                 "Confirmar Operación",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -138,7 +138,7 @@ namespace ParcialSeminarioTema1.UI
                 var resultado = _librosServicio.Eliminar(libroDto.LibroId);
                 if (resultado.exito)
                 {
-                    GridHelper.QuitarFila(r,dgvDatos);
+                    GridHelper.QuitarFila(r, dgvDatos);
                     cantidadRegistros = _librosServicio.ObtenerCantidad();
                     MostrarCantidad();
                     MessageBox.Show(resultado.mensaje, "Éxito",
@@ -156,6 +156,43 @@ namespace ParcialSeminarioTema1.UI
 
                 MessageBox.Show(ex.Message, "Error!!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TsbBorrarGenero_Click(object sender, EventArgs e)
+        {
+            using (var frm = new FrmGeneros(_generosServicio))
+            {
+                frm.ShowDialog(this);
+                var genero= frm.GetGenero();
+                if (genero is null)return;
+
+                try
+                {
+                    DialogResult drBorrar=MessageBox.Show($"¿Desea dar de baja el género {genero.NombreGenero}?",
+                            "Confirmar Baja",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button2);
+                    if (drBorrar == DialogResult.No) return;
+                    var resultado = _generosServicio.Eliminar(genero.NombreGenero);
+                    if (resultado.Exito)
+                    {
+                        MessageBox.Show(resultado.Mensaje, "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(resultado.Mensaje, "Error!!",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error!!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

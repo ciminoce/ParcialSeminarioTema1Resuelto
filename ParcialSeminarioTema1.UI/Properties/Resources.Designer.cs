@@ -313,6 +313,16 @@ namespace ParcialSeminarioTema1.UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete_property_40px {
+            get {
+                object obj = ResourceManager.GetObject("delete_property_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_sign_28px {
             get {
                 object obj = ResourceManager.GetObject("delete_sign_28px", resourceCulture);

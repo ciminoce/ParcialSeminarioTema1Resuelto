@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
@@ -38,7 +38,7 @@
             label1 = new Label();
             TsbNuevo = new ToolStripButton();
             TsbBorrar = new ToolStripButton();
-            TsbEditar = new ToolStripButton();
+            TsbBorrarGenero = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             TsbFiltrar = new ToolStripButton();
             TsbActualizar = new ToolStripButton();
@@ -76,8 +76,8 @@
             // 
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
-            dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(224, 224, 224);
+            dgvDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDatos.Columns.AddRange(new DataGridViewColumn[] { colId, colTitulo, colGenero });
             dgvDatos.Dock = DockStyle.Fill;
@@ -149,15 +149,16 @@
             TsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
             TsbBorrar.Click += TsbBorrar_Click;
             // 
-            // TsbEditar
+            // TsbBorrarGenero
             // 
-            TsbEditar.Image = Properties.Resources.Edit;
-            TsbEditar.ImageScaling = ToolStripItemImageScaling.None;
-            TsbEditar.ImageTransparentColor = Color.Magenta;
-            TsbEditar.Name = "TsbEditar";
-            TsbEditar.Size = new Size(44, 59);
-            TsbEditar.Text = "Editar";
-            TsbEditar.TextImageRelation = TextImageRelation.ImageAboveText;
+            TsbBorrarGenero.Image = Properties.Resources.delete_property_40px;
+            TsbBorrarGenero.ImageScaling = ToolStripItemImageScaling.None;
+            TsbBorrarGenero.ImageTransparentColor = Color.Magenta;
+            TsbBorrarGenero.Name = "TsbBorrarGenero";
+            TsbBorrarGenero.Size = new Size(84, 59);
+            TsbBorrarGenero.Text = "Borrar Género";
+            TsbBorrarGenero.TextImageRelation = TextImageRelation.ImageAboveText;
+            TsbBorrarGenero.Click += TsbBorrarGenero_Click;
             // 
             // toolStripSeparator1
             // 
@@ -204,7 +205,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { TsbNuevo, TsbBorrar, TsbEditar, toolStripSeparator1, TsbFiltrar, TsbActualizar, toolStripSeparator2, TsbCerrar });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { TsbNuevo, TsbBorrar, TsbBorrarGenero, toolStripSeparator1, TsbFiltrar, TsbActualizar, toolStripSeparator2, TsbCerrar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 62);
@@ -241,7 +242,7 @@
         private Label label1;
         private ToolStripButton TsbNuevo;
         private ToolStripButton TsbBorrar;
-        private ToolStripButton TsbEditar;
+        private ToolStripButton TsbBorrarGenero;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton TsbFiltrar;
         private ToolStripButton TsbActualizar;
