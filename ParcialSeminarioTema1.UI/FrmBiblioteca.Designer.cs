@@ -147,6 +147,7 @@
             TsbBorrar.Size = new Size(44, 59);
             TsbBorrar.Text = "Borrar";
             TsbBorrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            TsbBorrar.Click += TsbBorrar_Click;
             // 
             // TsbEditar
             // 

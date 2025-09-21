@@ -118,5 +118,45 @@ namespace ParcialSeminarioTema1.UI
                 throw;
             }
         }
+
+        private void TsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count==0)
+            {
+                return;
+            }
+            var r=dgvDatos.SelectedRows[0];
+            LibroListDto libroDto = (LibroListDto)r.Tag!;
+            DialogResult dr=MessageBox.Show($"¿Confirma la baja de {libroDto.Titulo}?",
+                "Confirmar Operación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.No) return;
+            try
+            {
+                var resultado = _librosServicio.Eliminar(libroDto.LibroId);
+                if (resultado.exito)
+                {
+                    GridHelper.QuitarFila(r,dgvDatos);
+                    cantidadRegistros = _librosServicio.ObtenerCantidad();
+                    MostrarCantidad();
+                    MessageBox.Show(resultado.mensaje, "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(resultado.mensaje, "Error!!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

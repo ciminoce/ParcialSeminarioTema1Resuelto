@@ -48,5 +48,23 @@ namespace ParcialSeminarioTema1.Servicios.Servicios
             var libros = _librosRepositorio.ObtenerLista(generoId);
             return LibrosMapeador.MapearLista(libros);
         }
+        public (bool exito, string mensaje) Eliminar(int libroId)
+        {
+            Libro? libro = _librosRepositorio.ObtenerPorId(libroId);
+            if (libro is null)
+            {
+                return (false, "Libro no encontrado");
+            }
+            try
+            {
+                _librosRepositorio.Eliminar(libro.LibroId);
+                return (true, "Libro eliminado satisfactoriamente!!!");
+            }
+            catch (Exception ex)
+            {
+
+                return(false, "No se pudo eliminar el libro\n"+ex.Message);
+            }
+        }
     }
 }

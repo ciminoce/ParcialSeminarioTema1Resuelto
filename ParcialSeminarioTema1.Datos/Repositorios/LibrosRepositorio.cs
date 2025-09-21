@@ -19,6 +19,17 @@ namespace ParcialSeminarioTema1.Datos.Repositorios
             _dbContext.SaveChanges();
         }
 
+        public void Eliminar(int libroId)
+        {
+            var libroEnDb=ObtenerPorId(libroId);
+            if(libroEnDb is null)
+            {
+                throw new Exception("Libro inexistente!!!");
+            }
+            _dbContext.Libros.Remove(libroEnDb);
+            _dbContext.SaveChanges();
+        }
+
         public bool ExisteLibro(Libro libro)
         {
             return _dbContext.Libros.Any(

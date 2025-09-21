@@ -10,5 +10,6 @@ namespace ParcialSeminarioTema1.Datos.Interfaces
         void Agregar(Libro libro);
         bool ExisteLibro(Libro libro);
         Libro? ObtenerPorId(int libroId);
+        void Eliminar(int libroId);
     }
 }
